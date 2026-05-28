@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Novo Ambiente - UniShare</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;family=Space+Grotesk:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#a44100",
+                      "background": "#fcf8ff",
+                      "secondary-container": "#dce2f3",
+                      "outline": "#777587",
+                      "inverse-surface": "#302f39",
+                      "on-primary-container": "#dad7ff",
+                      "on-primary": "#ffffff",
+                      "surface-container-high": "#eae6f4",
+                      "surface-bright": "#fcf8ff",
+                      "surface-tint": "#4d44e3",
+                      "surface-container-highest": "#e4e1ee",
+                      "inverse-primary": "#c3c0ff",
+                      "error": "#ba1a1a",
+                      "tertiary": "#7e3000",
+                      "surface": "#fcf8ff",
+                      "surface-dim": "#dcd8e5",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "primary-container": "#4f46e5",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "on-background": "#1b1b24",
+                      "secondary-fixed-dim": "#c0c7d6",
+                      "tertiary-fixed": "#ffdbcc",
+                      "secondary": "#585f6c",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#f0ecf9",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#ffb695",
+                      "outline-variant": "#c7c4d8",
+                      "on-tertiary-container": "#ffd2be",
+                      "on-secondary-fixed": "#151c27",
+                      "surface-variant": "#e4e1ee",
+                      "surface-container-low": "#f5f2ff",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed-variant": "#7b2f00",
+                      "on-surface-variant": "#464555",
+                      "on-secondary-container": "#5e6572",
+                      "primary": "#3525cd",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed": "#0f0069",
+                      "primary-fixed": "#e2dfff",
+                      "on-tertiary-fixed": "#351000",
+                      "on-secondary-fixed-variant": "#404754",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#f3effc",
+                      "secondary-fixed": "#dce2f3",
+                      "on-surface": "#1b1b24"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "unit": "4px",
+                      "xs": "4px",
+                      "container-padding": "20px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "gutter": "12px"
+              },
+              "fontFamily": {
+                      "body-main": [
+                              "Inter"
+                      ],
+                      "currency-lg": [
+                              "Space Grotesk"
+                      ],
+                      "card-title": [
+                              "Inter"
+                      ],
+                      "currency-sm": [
+                              "Space Grotesk"
+                      ],
+                      "body-metadata": [
+                              "Inter"
+                      ],
+                      "display-title": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-main": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "currency-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "card-title": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "currency-sm": [
+                              "16px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-metadata": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-title": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-main text-body-main min-h-screen antialiased flex flex-col relative pt-[68px] pb-[80px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center w-full px-5 py-4 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 shadow-sm docked full-width md:hidden">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-indigo-600 dark:text-indigo-400">account_balance_wallet</span>
+<h1 class="text-xl font-black text-indigo-600 dark:text-indigo-400 font-inter text-sm font-semibold tracking-tight">UniShare</h1>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant hover:opacity-80 transition-opacity active:scale-98 transition-transform cursor-pointer">
+<img alt="Student user profile" class="w-full h-full object-cover" data-alt="A close-up profile portrait of a modern university student against a minimalist, brightly lit solid pastel background. The lighting is soft and flattering, highlighting a friendly, confident expression. The overall aesthetic is clean, professional yet youthful, fitting perfectly into a modern functionalist app design with high-key tonal layering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd-Wn7CQmCjl4MduXYDTfMYeD1zfSeWluKGjUORmZ7rm0GKoGZwZ4FsF6wrWIzSbgYXf9iLRrrwuy5msYaoFU4UBygxFWjeQsVTAYhSzh7s4AncTg04CkFFng2CQ0TPy-yhpc0w1Qz5GdmfwGAsx-Qe5Vv1C0OM2aApNNtXnQaEnqdC2R_DBnJzL45ItRg-dHQwk9imZWsVuqIgqbkIU2Dure6QRwBdTjtXWcyJtOAPRd855mPbLvtJbkJCiA5DOugcrL-9zEfG2k"/>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 w-full max-w-2xl mx-auto px-container-padding pt-md pb-xl">
+<h2 class="font-display-title text-display-title text-on-background mb-lg">Novo Ambiente</h2>
+<!-- Form Elements -->
+<div class="flex flex-col gap-lg">
+<!-- Environment Title Input -->
+<div class="flex flex-col gap-sm">
+<label class="font-card-title text-card-title text-on-background" for="env-title">Nome do Ambiente</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface border border-outline-variant rounded-lg p-md focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none placeholder:text-outline font-body-main text-body-main shadow-[0_4px_12px_rgba(0,0,0,0.02)]" id="env-title" placeholder="e.g. República Central" type="text"/>
+</div>
+</div>
+<!-- Environment Type Selection Cards -->
+<div class="flex flex-col gap-sm">
+<span class="font-card-title text-card-title text-on-background">Tipo de Ambiente</span>
+<div class="grid grid-cols-2 gap-gutter">
+<!-- Active Card -->
+<div class="bg-primary-fixed border-2 border-primary rounded-xl p-md flex flex-col items-start gap-sm cursor-pointer shadow-[0_8px_24px_rgba(0,0,0,0.08)] active:scale-95 transition-transform">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<span class="font-card-title text-[16px] leading-[20px] font-bold text-on-background mt-xs">Residência</span>
+</div>
+<!-- Inactive Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col items-start gap-sm cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.02)] hover:border-primary/50 transition-colors active:scale-95">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="font-card-title text-[16px] leading-[20px] font-bold text-on-background mt-xs">Atividade Universitária</span>
+</div>
+</div>
+</div>
+<!-- Participants Section -->
+<div class="flex flex-col gap-sm pt-sm border-t border-surface-variant mt-sm">
+<span class="font-card-title text-card-title text-on-background">Participantes</span>
+<p class="font-body-metadata text-body-metadata text-secondary -mt-xs">Convide membros para dividir as despesas.</p>
+<div class="flex gap-sm mt-xs">
+<input class="flex-1 bg-surface-container-low text-on-surface border border-outline-variant rounded-lg px-md py-[12px] focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none placeholder:text-outline font-body-main text-body-main shadow-[0_4px_12px_rgba(0,0,0,0.02)]" placeholder="Email do participante" type="email"/>
+<button class="bg-primary-container text-on-primary rounded-lg px-md font-card-title text-[15px] font-bold flex items-center justify-center hover:opacity-90 active:scale-95 transition-all shadow-[0_4px_12px_rgba(79,70,229,0.2)]">
+                        Adicionar
+                    </button>
+</div>
+<!-- Participant List -->
+<div class="flex flex-col gap-xs mt-md">
+<!-- Participant 1 -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-sm rounded-lg border border-outline-variant shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
+<div class="flex items-center gap-sm">
+<img alt="Avatar" class="w-8 h-8 rounded-full object-cover border border-surface-variant" data-alt="A highly detailed close-up portrait of a young female university student with a subtle smile. The background is a clean, minimalist pure white environment reflecting a high-key light mode UI aesthetic. Lighting is bright, soft, and even, emphasizing a sense of clarity and reliability fitting for a modern fintech app element." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8QMaZsiKoq2trI-o8qGqlevupbP1NuRxzUjDpliDIW3SGkzSaDMvfoPOJpNZx4rO5QsWi2CdFZuUcEec-fUR1Wp2H57Gnkwo3lAVvdC3Lon90l8FYNQkoA5SLf8jMR-ga07EcuhFC7xQCyrdtngBLNGatLytc9iV5Xwgel7pEJmpZOV_vV86Eywr1nlj7x103LaRhatemhrdrMiGxDLnXQ4n9MJDiGt0lHgyuqNVbrx3sZ0TbMzfhD7lXS6QJDfsC2uEhe51khSE"/>
+<span class="font-body-metadata text-body-metadata text-on-surface">lucas.silva@uni.edu</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center text-error hover:bg-error-container rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Participant 2 -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-sm rounded-lg border border-outline-variant shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
+<div class="flex items-center gap-sm">
+<img alt="Avatar" class="w-8 h-8 rounded-full object-cover border border-surface-variant" data-alt="A precise, clean portrait photograph of a young male student looking directly at the camera with a neutral, calm expression. Set against a soft, bright minimalist studio backdrop that conveys trust and simplicity. The lighting is immaculate and shadowless, perfectly suited for a crisp circular avatar within a data-first modern application interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwardsuDUbqHrp04rQAqS1Od8ourimkcVQqnatKAl6AzYaiWFUHl7dklJdrOfk5qN_VQ7VIODNx-pydcvk72Vxl63JVZorSvvq1jKSe2wgYwpxYamlP9XVUsIWX8RATKF-vNm5ckoap6JP_xFif0Jec3XXG6_EEUBG7uWDtgObTNLGTHovAHvEDSKuGH0gEfDeUmS5Vm3MoN74Q5OQ3mbit7MvsVrKZVhXMztqD_jT5eUJTVoVA4dDutEt-8Yy6Nc7JPDWLdDZZ7g"/>
+<span class="font-body-metadata text-body-metadata text-on-surface">mariana.costa@uni.edu</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center text-error hover:bg-error-container rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary text-on-primary h-[48px] rounded-lg font-card-title text-card-title flex items-center justify-center shadow-[0_4px_12px_rgba(53,37,205,0.25)] mt-lg hover:opacity-90 active:scale-95 transition-all">
+                Criar Ambiente
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] md:hidden">
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-600 hover:text-indigo-500 transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-wider">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-wider text-indigo-600">Workspaces</span>
+</a>
+<a class="flex flex-col items-center justify-center text-gray-400 dark:text-gray-600 hover:text-indigo-500 transition-colors active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-[10px] font-bold uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+</body></html>

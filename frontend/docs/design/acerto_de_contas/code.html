@@ -1,0 +1,157 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>UniShare - Settlement</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Space+Grotesk:wght@600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#151c27",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fcf8ff",
+                        "on-tertiary-fixed": "#351000",
+                        "surface-container-low": "#f5f2ff",
+                        "inverse-primary": "#c3c0ff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "outline-variant": "#c7c4d8",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-container": "#a44100",
+                        "background": "#fcf8ff",
+                        "on-surface": "#1b1b24",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "secondary-fixed": "#dce2f3",
+                        "on-surface-variant": "#464555",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e4e1ee",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f3effc",
+                        "inverse-surface": "#302f39",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eae6f4",
+                        "primary-container": "#4f46e5",
+                        "primary-fixed": "#e2dfff",
+                        "surface-tint": "#4d44e3",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#0f0069",
+                        "tertiary": "#7e3000",
+                        "outline": "#777587",
+                        "surface-dim": "#dcd8e5",
+                        "on-background": "#1b1b24",
+                        "on-tertiary-container": "#ffd2be",
+                        "tertiary-fixed": "#ffdbcc",
+                        "primary": "#3525cd",
+                        "surface": "#fcf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#585f6c",
+                        "on-secondary-container": "#5e6572",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#404754",
+                        "secondary-container": "#dce2f3",
+                        "surface-container-highest": "#e4e1ee",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-primary-container": "#dad7ff",
+                        "surface-container": "#f0ecf9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "12px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "md": "16px",
+                        "container-padding": "20px",
+                        "sm": "8px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-main": ["Inter"],
+                        "currency-lg": ["Space Grotesk"],
+                        "body-metadata": ["Inter"],
+                        "currency-sm": ["Space Grotesk"],
+                        "display-title": ["Inter"],
+                        "card-title": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-main": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "currency-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-metadata": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "currency-sm": ["16px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "display-title": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "card-title": ["18px", {"lineHeight": "24px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen text-on-background font-body-main antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-white/90 backdrop-blur-md text-primary-container font-['Inter'] font-semibold tracking-tight border-b border-slate-100 shadow-sm flex justify-between items-center w-full px-5 py-3 h-16 sticky top-0 z-50">
+<button class="text-on-surface-variant hover:bg-slate-50 transition-colors active:opacity-70 flex items-center justify-center p-2 rounded-full">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<span class="text-lg font-black text-primary-container">UniShare</span>
+<div class="w-10"></div> <!-- Placeholder for balance -->
+</header>
+<main class="max-w-md mx-auto px-container-padding py-lg flex flex-col gap-lg">
+<!-- Debt Summary Banner -->
+<section class="flex flex-col items-center justify-center text-center py-lg">
+<h1 class="font-display-title text-display-title text-on-surface mb-sm">Realizar Pagamento</h1>
+<p class="font-body-main text-body-main text-on-surface-variant">Referente ao saldo líquido do mês de Abril</p>
+</section>
+<!-- Main Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] p-md flex flex-col gap-lg">
+<!-- Creditor Info -->
+<div class="flex items-center gap-md pb-md border-b border-surface-variant">
+<img alt="Lucas Silva" class="w-16 h-16 rounded-full object-cover shadow-sm" data-alt="A professional headshot of a young man with dark hair, smiling warmly. He is wearing a simple casual shirt. The background is a clean, well-lit studio setting with neutral tones, perfectly matching the light mode, modern aesthetic of the application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDc_EsQaTxUYFJVVlP1YfIUdK1zIQiw6mnr4jiAI6a-781_dMRO0ZHnRx3M8MvKXwXuieJO_GDXHCZRyU34WgFkbsQ5YzIGoYoSoHCuG5Ri5TgRYDl7_RZhQXJcnqY38btV8Iq89hufz0cvsiLZR-SW0DSlOkOojpDULMcaDBnnM3MKgYhpwRChVs8BXBeV3r2lbt7TUuAsQ1g-U-p2W5sDPrjQHG5wy0sAdGPCL6CWeYGaI4r5yB96dCcLG7ueCsqs3dgsz9lDNs">
+<div>
+<h2 class="font-card-title text-card-title text-on-surface">Lucas Silva</h2>
+<p class="font-body-metadata text-body-metadata text-on-surface-variant">@lucas_silva</p>
+</div>
+</div>
+<!-- Amount -->
+<div class="flex flex-col items-center py-sm">
+<span class="font-body-metadata text-body-metadata text-on-surface-variant mb-xs">Amount to Pay</span>
+<span class="font-currency-lg text-currency-lg text-primary">R$ 45,50</span>
+</div>
+<!-- PIX Key Details -->
+<div class="bg-surface-container-low rounded-lg p-md">
+<div class="flex flex-col gap-xs mb-md">
+<span class="font-body-metadata text-body-metadata text-on-surface-variant">Chave PIX (Telefone)</span>
+<span class="font-body-main text-body-main text-on-surface font-medium break-all">+55 (11) 98765-4321</span>
+</div>
+<button class="w-full h-12 bg-primary-container text-on-primary font-body-main text-body-main font-semibold rounded-lg flex items-center justify-center gap-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="content_copy">content_copy</span>
+                    Copiar Chave PIX
+                </button>
+</div>
+</div>
+<!-- Instructions/Warning -->
+<div class="flex gap-md items-start p-md bg-inverse-on-surface rounded-xl">
+<span class="material-symbols-outlined text-primary-container mt-xs" data-icon="info">info</span>
+<p class="font-body-metadata text-body-metadata text-on-surface-variant">
+                After making the transfer, wait a few minutes for the other party to confirm receipt in the app to clear this balance.
+            </p>
+</div>
+</main>
+
+
+</body></html>

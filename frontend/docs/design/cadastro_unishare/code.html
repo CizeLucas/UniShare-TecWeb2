@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UniShare - Onboarding</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#151c27",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#fcf8ff",
+                    "on-tertiary-fixed": "#351000",
+                    "surface-container-low": "#f5f2ff",
+                    "inverse-primary": "#c3c0ff",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "outline-variant": "#c7c4d8",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "tertiary-container": "#a44100",
+                    "background": "#fcf8ff",
+                    "on-surface": "#1b1b24",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#c0c7d6",
+                    "secondary-fixed": "#dce2f3",
+                    "on-surface-variant": "#464555",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e4e1ee",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f3effc",
+                    "inverse-surface": "#302f39",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#eae6f4",
+                    "primary-container": "#4f46e5",
+                    "primary-fixed": "#e2dfff",
+                    "surface-tint": "#4d44e3",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#0f0069",
+                    "tertiary": "#7e3000",
+                    "outline": "#777587",
+                    "surface-dim": "#dcd8e5",
+                    "on-background": "#1b1b24",
+                    "on-tertiary-container": "#ffd2be",
+                    "tertiary-fixed": "#ffdbcc",
+                    "primary": "#3525cd",
+                    "surface": "#fcf8ff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#585f6c",
+                    "on-secondary-container": "#5e6572",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#404754",
+                    "secondary-container": "#dce2f3",
+                    "surface-container-highest": "#e4e1ee",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-primary-container": "#dad7ff",
+                    "surface-container": "#f0ecf9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "12px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "unit": "4px",
+                    "md": "16px",
+                    "container-padding": "20px",
+                    "sm": "8px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "body-main": [
+                            "Inter"
+                    ],
+                    "currency-lg": [
+                            "Space Grotesk"
+                    ],
+                    "body-metadata": [
+                            "Inter"
+                    ],
+                    "currency-sm": [
+                            "Space Grotesk"
+                    ],
+                    "display-title": [
+                            "Inter"
+                    ],
+                    "card-title": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "body-main": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "currency-lg": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-metadata": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "currency-sm": [
+                            "16px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-title": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "card-title": [
+                            "18px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Custom Input Styling */
+        .input-base {
+            @apply w-full bg-surface-container-highest border-2 border-transparent rounded-lg px-md py-[12px] font-body-main text-body-main text-on-surface focus:outline-none focus:border-primary transition-colors;
+        }
+        .label-base {
+            @apply block font-body-metadata text-body-metadata text-on-surface-variant mb-unit;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-container-low min-h-screen flex items-center justify-center p-container-padding antialiased">
+<!-- Main Container - Linear Transactional Intent (No Navigation Shell) -->
+<main class="w-full max-w-[440px] flex flex-col gap-lg">
+<!-- Header / Branding -->
+<header class="flex flex-col items-center text-center mb-sm">
+<div class="w-16 h-16 rounded-2xl bg-primary-container text-primary flex items-center justify-center mb-md shadow-sm">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<h1 class="font-display-title text-display-title text-on-surface">Criar Conta</h1>
+<p class="font-body-main text-body-main text-on-surface-variant mt-unit">Bem-vindo ao UniShare.</p>
+</header>
+<!-- Form Card (Level 1 Surface) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] p-lg flex flex-col gap-lg">
+<!-- Personal Info Section -->
+<section class="flex flex-col gap-md">
+<div>
+<label class="label-base" for="name">Nome Completo</label>
+<input class="input-base" id="name" placeholder="Ex: João Silva" type="text"/>
+</div>
+<div>
+<label class="label-base" for="email">E-mail Universitário</label>
+<input class="input-base" id="email" placeholder="joao@universidade.edu.br" type="email"/>
+</div>
+<div>
+<label class="label-base" for="password">Senha</label>
+<div class="relative">
+<input class="input-base pr-xl" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<hr class="border-t border-outline-variant/30"/>
+<!-- PIX Configuration Section -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">payments</span>
+<h2 class="font-card-title text-card-title text-on-surface">Recebimentos (PIX)</h2>
+</div>
+<!-- Type Selector (Pills) -->
+<div>
+<label class="label-base mb-sm">Tipo de Chave</label>
+<div class="flex flex-nowrap gap-xs">
+<!-- Active State -->
+<button class="py-sm rounded-full bg-primary-container text-on-primary-container font-body-metadata border border-transparent transition-colors px-sm text-[13px]" type="button">
+                            CPF
+                        </button>
+<!-- Inactive States -->
+<button class="py-sm rounded-full bg-surface text-on-surface-variant font-body-metadata border border-outline-variant hover:bg-surface-container-highest transition-colors px-sm text-[13px]" type="button">
+                            Email
+                        </button>
+<button class="py-sm rounded-full bg-surface text-on-surface-variant font-body-metadata border border-outline-variant hover:bg-surface-container-highest transition-colors px-sm text-[13px]" type="button">
+                            Phone
+                        </button>
+<button class="py-sm rounded-full bg-surface text-on-surface-variant font-body-metadata border border-outline-variant hover:bg-surface-container-highest transition-colors px-sm text-[13px]" type="button">
+                            Random
+                        </button>
+</div>
+</div>
+<!-- PIX Input -->
+<div>
+<label class="label-base" for="pix-key">Sua Chave</label>
+<input class="input-base" id="pix-key" placeholder="000.000.000-00" type="text"/>
+</div>
+<!-- Warning Banner -->
+<div class="flex items-start gap-sm p-sm bg-error-container/40 rounded-lg border border-error-container">
+<span class="material-symbols-outlined text-error text-[20px] shrink-0 mt-[2px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+<p class="font-body-metadata text-body-metadata text-on-error-container">
+                        Sem uma chave cadastrada, você não poderá gerar cobranças automáticas.
+                    </p>
+</div>
+</section>
+</div>
+<!-- Footer Actions -->
+<div class="pt-sm">
+<button class="w-full h-[48px] bg-primary text-on-primary font-card-title text-card-title rounded-lg flex items-center justify-center hover:opacity-90 active:scale-[0.98] transition-all">
+                Concluir Cadastro
+            </button>
+<p class="font-body-metadata text-body-metadata text-center text-on-surface-variant mt-md">
+                Já possui conta? <a class="text-primary font-medium hover:underline" href="#">Entrar</a>
+</p>
+</div>
+</main>
+</body></html>

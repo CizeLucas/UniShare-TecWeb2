@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bem-vindo ao UniShare</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;family=Space+Grotesk:wght@600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#5e6572",
+                        "tertiary-fixed": "#ffdbcc",
+                        "primary": "#3525cd",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-primary-container": "#dad7ff",
+                        "surface-dim": "#dcd8e5",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#302f39",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "surface-tint": "#4d44e3",
+                        "surface-container-high": "#eae6f4",
+                        "on-secondary-fixed-variant": "#404754",
+                        "on-tertiary-container": "#ffd2be",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "on-surface-variant": "#464555",
+                        "on-surface": "#1b1b24",
+                        "on-error-container": "#93000a",
+                        "surface": "#fcf8ff",
+                        "on-tertiary-fixed": "#351000",
+                        "surface-bright": "#fcf8ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f3effc",
+                        "surface-variant": "#e4e1ee",
+                        "inverse-primary": "#c3c0ff",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#a44100",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary-fixed": "#dce2f3",
+                        "surface-container-highest": "#e4e1ee",
+                        "tertiary": "#7e3000",
+                        "secondary-container": "#dce2f3",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "primary-fixed": "#e2dfff",
+                        "secondary": "#585f6c",
+                        "background": "#fcf8ff",
+                        "surface-container": "#f0ecf9",
+                        "primary-container": "#4f46e5",
+                        "on-secondary-fixed": "#151c27",
+                        "error-container": "#ffdad6",
+                        "on-background": "#1b1b24",
+                        "surface-container-low": "#f5f2ff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "outline-variant": "#c7c4d8",
+                        "outline": "#777587"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "12px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "gutter": "12px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "unit": "4px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "container-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "body-metadata": ["Inter"],
+                        "display-title": ["Inter"],
+                        "body-main": ["Inter"],
+                        "currency-lg": ["Space Grotesk"],
+                        "card-title": ["Inter"],
+                        "currency-sm": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-metadata": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-title": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-main": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "currency-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "card-title": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                        "currency-sm": ["16px", {"lineHeight": "20px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-scale:active {
+            transform: scale(0.98);
+        }
+        body {
+            background-color: #fcf8ff;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="font-body-main text-on-surface min-h-screen flex flex-col justify-between">
+<!-- Top Glow Effect (Decorative) -->
+<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[30%] bg-primary-container/5 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-container-padding text-center relative z-10">
+<!-- Logo Section -->
+<div class="mb-xl animate-fade-in-up">
+<div class="relative inline-block">
+<img alt="UniShare Logo" class="w-48 h-auto object-contain mx-auto transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida/ADBb0uhOcy11Rzuek-z177GvoWyyBEmhlrTZXvTk4_HKLbMqpQze7l2ItN_QIjoBPkUWmKOix4ODbylwZq68vJyEEGaJb_HerNW9m08f8CRu5GxgDT5BIEQYJbhv-emrsOKapPKbDH_SPrsoZ_GXbfDQZRL_HCzZYk0Y7jd5WZvG6818ylGnT1V4jDmcnomBYSCaDwXYfVmk2Obp8zUiKfZ6MeSC_uTqTFrKP6GycC76MNzlkOOU1d6sXgNLx4c"/>
+</div>
+</div>
+<!-- Typography Cluster -->
+<div class="max-w-[320px] mx-auto space-y-md">
+<h1 class="font-display-title text-display-title text-on-surface tracking-tight">
+                Bem-vindo ao UniShare
+            </h1>
+<p class="font-body-main text-body-main text-on-surface-variant leading-relaxed">
+                Gestão financeira colaborativa e transparente para estudantes.
+            </p>
+</div>
+<!-- Visual Decorative Elements (Asymmetric Layout Hint) -->
+<div class="mt-xl grid grid-cols-2 gap-gutter w-full max-w-sm opacity-60">
+<div class="h-1 bg-primary-container/20 rounded-full"></div>
+<div class="h-1 bg-outline-variant/30 rounded-full w-2/3"></div>
+</div>
+</main>
+<!-- Actions & Footer -->
+<footer class="p-container-padding w-full max-w-md mx-auto space-y-md pb-[48px] animate-slide-up">
+<!-- Primary Action: Começar agora -->
+<button class="w-full h-[48px] bg-primary-container text-on-primary font-bold rounded-xl active-scale transition-all shadow-lg shadow-primary-container/20 flex items-center justify-center gap-sm" onclick="window.location.href='{{DATA:SCREEN:SCREEN_8}}'">
+            Começar agora
+            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<!-- Secondary Action: Já tenho uma conta -->
+<button class="w-full h-[48px] border-2 border-primary-container text-primary-container font-bold rounded-xl active-scale transition-all bg-white/50 backdrop-blur-sm" onclick="window.location.href='{{DATA:SCREEN:SCREEN_21}}'">
+            Já tenho uma conta
+        </button>
+<!-- Micro-metadata -->
+<div class="text-center pt-sm">
+<p class="font-body-metadata text-body-metadata text-outline">
+                Ao continuar, você concorda com nossos Termos.
+            </p>
+</div>
+</footer>
+<!-- Background Decorative Circles -->
+<div class="fixed bottom-[-5%] right-[-5%] w-[40%] h-[20%] bg-tertiary-container/5 rounded-full blur-[80px] pointer-events-none"></div>
+<script>
+        // Simple entrance animations via CSS class additions
+        document.addEventListener('DOMContentLoaded', () => {
+            const main = document.querySelector('main');
+            const footer = document.querySelector('footer');
+            
+            main.classList.add('opacity-0');
+            footer.classList.add('opacity-0', 'translate-y-10');
+            
+            setTimeout(() => {
+                main.classList.remove('opacity-0');
+                main.classList.add('transition-all', 'duration-1000', 'opacity-100');
+            }, 100);
+
+            setTimeout(() => {
+                footer.classList.remove('opacity-0', 'translate-y-10');
+                footer.classList.add('transition-all', 'duration-700', 'opacity-100', 'translate-y-0');
+            }, 400);
+        });
+
+        // Interactive haptic-like effect on buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                btn.classList.add('scale-[0.97]');
+            });
+            btn.addEventListener('touchend', () => {
+                btn.classList.remove('scale-[0.97]');
+            });
+        });
+    </script>
+<style>
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 1s ease-out forwards;
+        }
+    </style>
+</body></html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Novo Gasto - UniShare</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#151c27",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fcf8ff",
+                        "on-tertiary-fixed": "#351000",
+                        "surface-container-low": "#f5f2ff",
+                        "inverse-primary": "#c3c0ff",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "outline-variant": "#c7c4d8",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary-container": "#a44100",
+                        "background": "#fcf8ff",
+                        "on-surface": "#1b1b24",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "secondary-fixed": "#dce2f3",
+                        "on-surface-variant": "#464555",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e4e1ee",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f3effc",
+                        "inverse-surface": "#302f39",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#eae6f4",
+                        "primary-container": "#4f46e5",
+                        "primary-fixed": "#e2dfff",
+                        "surface-tint": "#4d44e3",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#0f0069",
+                        "tertiary": "#7e3000",
+                        "outline": "#777587",
+                        "surface-dim": "#dcd8e5",
+                        "on-background": "#1b1b24",
+                        "on-tertiary-container": "#ffd2be",
+                        "tertiary-fixed": "#ffdbcc",
+                        "primary": "#3525cd",
+                        "surface": "#fcf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#585f6c",
+                        "on-secondary-container": "#5e6572",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#404754",
+                        "secondary-container": "#dce2f3",
+                        "surface-container-highest": "#e4e1ee",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-primary-container": "#dad7ff",
+                        "surface-container": "#f0ecf9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "12px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "md": "16px",
+                        "container-padding": "20px",
+                        "sm": "8px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-main": ["Inter"],
+                        "currency-lg": ["Space Grotesk"],
+                        "body-metadata": ["Inter"],
+                        "currency-sm": ["Space Grotesk"],
+                        "display-title": ["Inter"],
+                        "card-title": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-main": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "currency-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-metadata": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "currency-sm": ["16px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "display-title": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "card-title": ["18px", { "lineHeight": "24px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Ensuring baseline grid adherence where possible */
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        /* Hiding scrollbar for horizontal lists */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Custom Input styles based on Style Guidance */
+        .unishare-input {
+            background-color: #F3F4F6; /* Fallback to neutral if theme doesn't match perfectly */
+            transition: all 0.2s ease-in-out;
+        }
+        .unishare-input:focus {
+            outline: none;
+            border-color: theme('colors.primary');
+            box-shadow: 0 0 0 2px theme('colors.primary-fixed');
+            background-color: theme('colors.surface-container-lowest');
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-main antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-indigo-600 dark:text-indigo-400 font-['Inter'] font-semibold tracking-tight docked full-width top-0 border-b border-slate-100 dark:border-slate-800 shadow-sm flex justify-between items-center w-full px-5 py-3 h-16 sticky z-50">
+<div class="flex items-center gap-md">
+<!-- Assuming Back action for this specific screen context -->
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center w-10 h-10 rounded-full">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<span class="font-card-title text-card-title text-on-surface">Novo Gasto</span>
+</div>
+<div class="text-lg font-black text-indigo-600 dark:text-indigo-400 hidden">UniShare</div> <!-- Brand logo hidden in this contextual header, replaced by title -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col px-container-padding py-lg gap-lg max-w-2xl mx-auto w-full pb-32">
+<!-- Valor Total Input (Bento-style focused card) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] p-md flex flex-col items-center justify-center gap-sm">
+<label class="font-body-metadata text-body-metadata text-on-surface-variant" for="valor_total">Valor Total</label>
+<div class="flex items-baseline gap-xs">
+<span class="font-currency-lg text-currency-lg text-on-surface">R$</span>
+<input class="font-currency-lg text-4xl leading-[48px] font-bold text-center text-primary bg-transparent border-none focus:ring-0 p-0 w-full max-w-[200px]" dir="rtl" id="valor_total" placeholder="0,00" type="text" value="0,00"/>
+</div>
+</section>
+<!-- Details Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] p-md flex flex-col gap-md">
+<!-- Título da despesa -->
+<div class="flex flex-col gap-unit">
+<label class="font-body-metadata text-body-metadata text-on-surface-variant" for="titulo">Título da despesa</label>
+<input class="unishare-input rounded-lg border border-transparent px-md py-sm font-body-main text-body-main text-on-surface w-full h-[48px]" id="titulo" placeholder="Ex: Conta de Luz" type="text"/>
+</div>
+<!-- Tags Section -->
+<div class="flex flex-col gap-unit pt-sm">
+<span class="font-body-metadata text-body-metadata text-on-surface-variant">Categoria</span>
+<div class="flex gap-sm">
+<!-- Essencial (Blue/Primary container tint) -->
+<label class="cursor-pointer flex-1">
+<input checked="" class="peer sr-only" name="categoria" type="radio" value="essencial"/>
+<div class="rounded-lg px-md py-sm text-center border border-outline-variant peer-checked:bg-primary-fixed peer-checked:border-primary peer-checked:text-primary transition-all font-body-metadata text-body-metadata font-medium text-on-surface-variant">
+                            [ESSENCIAL]
+                        </div>
+</label>
+<!-- Lazer (Amber/Tertiary container tint based on theme) -->
+<label class="cursor-pointer flex-1">
+<input class="peer sr-only" name="categoria" type="radio" value="lazer"/>
+<div class="rounded-lg px-md py-sm text-center border border-outline-variant peer-checked:bg-tertiary-fixed peer-checked:border-tertiary peer-checked:text-tertiary transition-all font-body-metadata text-body-metadata font-medium text-on-surface-variant">
+                            [LAZER]
+                        </div>
+</label>
+</div>
+</div>
+</section>
+<!-- Envolvidos Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.05)] p-md flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<h3 class="font-card-title text-card-title text-on-surface">Envolvidos</h3>
+<span class="font-body-metadata text-body-metadata text-on-surface-variant">4 pessoas</span>
+</div>
+<!-- Division Logic Toggle -->
+<div class="bg-surface-container-high rounded-lg p-unit flex relative">
+<div class="absolute w-1/2 h-[calc(100%-8px)] bg-surface-container-lowest rounded shadow-sm right-1 transition-transform duration-300"></div>
+<button class="relative z-10 flex-1 py-xs text-center font-body-metadata text-body-metadata font-medium text-on-surface-variant">Igualitário</button>
+<button class="relative z-10 flex-1 py-xs text-center font-body-metadata text-body-metadata font-medium text-primary">Percentual</button>
+</div>
+<!-- Avatars List -->
+<div class="flex flex-row gap-md pb-sm overflow-x-auto no-scrollbar mt-sm snap-x snap-mandatory"><!-- Person 1: Você -->
+<div class="flex-none w-32 snap-start flex flex-col items-center gap-sm p-sm rounded-xl bg-surface-container-low/50 border border-outline-variant/20">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDRcWFBfRKsS67dRrWrr_Gca4R79vSb8qSJCLQJNYW7qNaK4KCiGyc8fCh3IKqBLs9O1L2raPLe-1hNfD-_lQ2Nhe6Qo0sxmw84kwhfWz-A64YIMtYmRjfNjcbc3YRGmsz-RY6x4HJTDWK-c9S6js7NqsYdXceiMxONWTuvtQiIhUkU4ezRnVNrSD0SoqBNGaLtVdjR6esru3VKOB6Da1AQJHWG6zoklwJOug_sZT_abmX6OGNdXx4xE0Rfa7dscuhyrNMhqESTI"/>
+</div>
+<span class="font-body-metadata text-on-surface font-medium truncate w-full text-center">Você</span>
+<div class="flex items-center gap-xs">
+<input class="w-16 h-10 rounded-lg border-outline-variant bg-surface-container-lowest text-center font-body-main focus:ring-primary focus:border-primary" type="number" value="25"/>
+<span class="text-on-surface-variant font-body-metadata text-sm">%</span>
+</div>
+</div>
+<!-- Person 2: Ana -->
+<div class="flex-none w-32 snap-start flex flex-col items-center gap-sm p-sm rounded-xl bg-surface-container-low/50 border border-outline-variant/20">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeYYBBC_rhng4Soo5112vKob_g-14uh7f_hqSyNSTEKnG9tMFF20HNNPpvt6p2Qr6EPImb_9jGMVUvVWW1ab0EcKlEZM63cP2UksJkAMR4ktkyGPRxSBcZBULaX1XeZZh1kvj334Qcm9IgPEFIDbWYnx4mYQX4n7uQT2SQbf0mq3X1Y7C0nhFZaZdwqJSHUb8_-WoMjCFPRmLbJ2-tkUvgt1G6j8BnG7pBM23WPz27FseRIv3u3sVyS0gG_k2l2kabfBsq3wiPNcQ"/>
+</div>
+<span class="font-body-metadata text-on-surface font-medium truncate w-full text-center">Ana</span>
+<div class="flex items-center gap-xs">
+<input class="w-16 h-10 rounded-lg border-outline-variant bg-surface-container-lowest text-center font-body-main focus:ring-primary focus:border-primary" type="number" value="25"/>
+<span class="text-on-surface-variant font-body-metadata text-sm">%</span>
+</div>
+</div>
+<!-- Person 3: Carlos -->
+<div class="flex-none w-32 snap-start flex flex-col items-center gap-sm p-sm rounded-xl bg-surface-container-low/50 border border-outline-variant/20">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary">
+<img alt="Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGWHIfuiP0UD3C_Q0PaxgetP741U5yKG1_-nr8nKWO5Sr3lBlO4j13d6mStCi8S4cn9DAhgYEzmvK08Io9lY8PGaJ4cAUtdk3ob04jTQw5TPR_mk3Ot6ZXpmyE7OYx96R66OGB6qwemAkrQLI2v7sUZcroLAEb6YV2l8kOiLzl09LeU292TwGu79qcXvj4SE8JU0oLRKNwx7WaSL3gkFuqlJjBFnZAgGAXX4Sg68B7SPdw9LPt4UbFE5EhY-8JMvHVI71jEFe6ox8"/>
+</div>
+<span class="font-body-metadata text-on-surface font-medium truncate w-full text-center">Carlos</span>
+<div class="flex items-center gap-xs">
+<input class="w-16 h-10 rounded-lg border-outline-variant bg-surface-container-lowest text-center font-body-main focus:ring-primary focus:border-primary" type="number" value="25"/>
+<span class="text-on-surface-variant font-body-metadata text-sm">%</span>
+</div>
+</div>
+<!-- Person 4: Maria -->
+<div class="flex-none w-32 snap-start flex flex-col items-center gap-sm p-sm rounded-xl bg-surface-container-low/50 border border-outline-variant/20">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant font-card-title border-2 border-primary">M</div>
+<span class="font-body-metadata text-on-surface font-medium truncate w-full text-center">Maria</span>
+<div class="flex items-center gap-xs">
+<input class="w-16 h-10 rounded-lg border-outline-variant bg-surface-container-lowest text-center font-body-main focus:ring-primary focus:border-primary" type="number" value="25"/>
+<span class="text-on-surface-variant font-body-metadata text-sm">%</span>
+</div>
+</div>
+<!-- Total Sum Row (Restored as a footer for the section rather than inside the carousel container) -->
+<div class="flex justify-between items-center w-full pt-md border-t border-outline-variant/30 mt-md sticky left-0">
+<span class="font-bold text-on-surface">Total</span>
+<div class="flex items-center gap-sm">
+<span class="font-bold text-primary text-xl">100%</span>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+</div></div>
+</section>
+</main>
+<!-- Floating Action / Save Button Area -->
+<div class="fixed bottom-0 left-0 w-full px-container-padding pb-lg pt-md bg-gradient-to-t from-background via-background to-transparent z-40 max-w-2xl mx-auto right-0">
+<button class="w-full h-[48px] bg-primary text-on-primary font-body-main text-body-main font-semibold rounded-lg shadow-[0_8px_24px_rgba(0,0,0,0.1)] active:scale-[0.98] transition-transform">
+            Salvar
+        </button>
+</div>
+<!-- Navigation Shell suppressed as this is a transactional "Add" screen -->
+</body></html>

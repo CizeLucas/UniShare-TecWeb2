@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Workspaces</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-primary-container": "#dad7ff",
+                        "on-background": "#1b1b24",
+                        "tertiary": "#7e3000",
+                        "surface-container-highest": "#e4e1ee",
+                        "on-secondary-fixed-variant": "#404754",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "outline": "#777587",
+                        "primary": "#3525cd",
+                        "on-tertiary-container": "#ffd2be",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#151c27",
+                        "surface-bright": "#fcf8ff",
+                        "surface-container-high": "#eae6f4",
+                        "surface-tint": "#4d44e3",
+                        "secondary-fixed": "#dce2f3",
+                        "outline-variant": "#c7c4d8",
+                        "primary-container": "#4f46e5",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f5f2ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#585f6c",
+                        "inverse-surface": "#302f39",
+                        "secondary-container": "#dce2f3",
+                        "on-surface-variant": "#464555",
+                        "on-primary-fixed": "#0f0069",
+                        "tertiary-container": "#a44100",
+                        "surface-dim": "#dcd8e5",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "tertiary-fixed": "#ffdbcc",
+                        "on-tertiary-fixed": "#351000",
+                        "inverse-primary": "#c3c0ff",
+                        "inverse-on-surface": "#f3effc",
+                        "surface-variant": "#e4e1ee",
+                        "on-secondary-container": "#5e6572",
+                        "surface": "#fcf8ff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "background": "#fcf8ff",
+                        "primary-fixed": "#e2dfff",
+                        "on-surface": "#1b1b24",
+                        "surface-container": "#f0ecf9",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "container-padding": "20px",
+                        "unit": "4px",
+                        "md": "16px",
+                        "gutter": "12px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "display-title": ["Inter", "sans-serif"],
+                        "currency-lg": ["Space Grotesk", "sans-serif"],
+                        "card-title": ["Inter", "sans-serif"],
+                        "body-main": ["Inter", "sans-serif"],
+                        "currency-sm": ["Space Grotesk", "sans-serif"],
+                        "body-metadata": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "display-title": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "currency-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "card-title": ["18px", { "lineHeight": "24px", "fontWeight": "700" }],
+                        "body-main": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "currency-sm": ["16px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "body-metadata": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-indigo-600 dark:text-indigo-400 font-['Inter'] font-semibold tracking-tight docked full-width top-0 border-b border-slate-100 dark:border-slate-800 shadow-sm flex justify-between items-center w-full px-5 py-3 h-16 sticky z-40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:opacity-70 transition-opacity p-2 rounded-full cursor-pointer text-slate-500 dark:text-slate-400">account_balance_wallet</span>
+<span class="text-lg font-black text-indigo-600 dark:text-indigo-400">UniShare</span>
+</div>
+<span class="material-symbols-outlined hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:opacity-70 transition-opacity p-2 rounded-full cursor-pointer text-slate-500 dark:text-slate-400">notifications</span>
+</header>
+<!-- Main Content -->
+<main class="pt-lg px-container-padding">
+<div class="flex justify-between items-end mb-lg">
+<h1 class="font-display-title text-display-title text-on-surface">Meus Ambientes</h1>
+</div>
+<!-- Bento Grid / Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Workspace Card: Debit -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col justify-between h-32 relative overflow-hidden group hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow">
+<!-- Decorative gradient blob -->
+<div class="absolute -top-10 -right-10 w-24 h-24 bg-error-container rounded-full blur-2xl opacity-50"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<div>
+<h2 class="font-card-title text-card-title text-on-surface">República Central</h2>
+<p class="font-body-metadata text-body-metadata text-secondary">Residência</p>
+</div>
+</div>
+</div>
+<div class="flex justify-end items-end z-10">
+<div class="text-right">
+<p class="font-body-metadata text-body-metadata text-secondary mb-xs">Meu Saldo</p>
+<p class="font-currency-lg text-currency-lg text-error">- R$ 45,50</p>
+</div>
+</div>
+</div>
+<!-- Workspace Card: Credit -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col justify-between h-32 relative overflow-hidden group hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow">
+<!-- Decorative gradient blob -->
+<div class="absolute -top-10 -right-10 w-24 h-24 bg-emerald-100 rounded-full blur-2xl opacity-50"></div>
+<div class="flex justify-between items-start z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div>
+<h2 class="font-card-title text-card-title text-on-surface">Projeto Integrador</h2>
+<p class="font-body-metadata text-body-metadata text-secondary">Universidade</p>
+</div>
+</div>
+</div>
+<div class="flex justify-end items-end z-10">
+<div class="text-right">
+<p class="font-body-metadata text-body-metadata text-secondary mb-xs">Meu Saldo</p>
+<p class="font-currency-lg text-currency-lg text-emerald-600">+ R$ 120,00</p>
+</div>
+</div>
+</div>
+<!-- Workspace Card: Neutral -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-[0_4px_12px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col justify-between h-32 relative overflow-hidden group hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow">
+<div class="flex justify-between items-start z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">flight_takeoff</span>
+</div>
+<div>
+<h2 class="font-card-title text-card-title text-on-surface">Viagem Fim de Ano</h2>
+<p class="font-body-metadata text-body-metadata text-secondary">Lazer</p>
+</div>
+</div>
+</div>
+<div class="flex justify-end items-end z-10">
+<div class="text-right">
+<p class="font-body-metadata text-body-metadata text-secondary mb-xs">Meu Saldo</p>
+<p class="font-currency-lg text-currency-lg text-on-surface-variant">R$ 0,00</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-[96px] right-container-padding w-14 h-14 bg-primary text-on-primary rounded-xl flex items-center justify-center shadow-[0_8px_24px_rgba(0,0,0,0.15)] hover:bg-primary-container hover:scale-105 transition-all z-40">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="bg-white dark:bg-slate-900 text-[11px] font-medium font-['Inter'] docked full-width bottom-0 rounded-t-2xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 block md:hidden">
+<!-- Index 0: Dashboard (Inactive) -->
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-indigo-500 dark:hover:text-indigo-300 scale-95 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+<span>Dashboard</span>
+</button>
+<!-- Index 1: Workspaces (Active) -->
+<button class="flex flex-col items-center justify-center text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/20 rounded-xl px-3 py-1 hover:text-indigo-500 dark:hover:text-indigo-300 scale-95 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">group</span>
+<span>Workspaces</span>
+</button>
+<!-- Index 2: Profile (Inactive) -->
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-indigo-500 dark:hover:text-indigo-300 scale-95 active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined mb-1">person</span>
+<span>Profile</span>
+</button>
+</nav>
+<!-- Desktop Sidebar Placeholder (Hidden on mobile, matching bottom nav intent) -->
+<aside class="hidden md:flex flex-col w-64 h-screen fixed left-0 top-16 bg-surface-container-lowest border-r border-outline-variant/30 pt-lg px-md gap-2 z-30 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-body-main text-body-main">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 text-primary font-medium transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-body-main text-body-main">Workspaces</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary hover:bg-surface-container hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-main text-body-main">Profile</span>
+</a>
+</aside>
+<!-- Adjust main content margin for desktop sidebar -->
+<style>
+        @media (min-width: 768px) {
+            main {
+                margin-left: 16rem; /* 64 * 0.25rem = 16rem */
+            }
+        }
+    </style>
+</body></html>
