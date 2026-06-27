@@ -1,65 +1,89 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function WelcomePage() {
+  const router = useRouter();
+  const [mainVisible, setMainVisible] = useState(false);
+  const [footerVisible, setFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setMainVisible(true), 100);
+    const t2 = setTimeout(() => setFooterVisible(true), 400);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="font-body-main text-on-surface min-h-screen flex flex-col justify-between overflow-hidden bg-background">
+      {/* Glow decorativo superior */}
+      <div className="fixed top-[-10%] left-[-10%] w-[50%] h-[30%] bg-primary-container/5 rounded-full blur-[100px] pointer-events-none" />
+
+      {/* Conteúdo central */}
+      <main
+        className={`flex-grow flex flex-col items-center justify-center px-container-padding text-center relative z-10 transition-all duration-1000 ${
+          mainVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+        }`}
+      >
+        {/* Logo */}
+        <div className="mb-xl">
+          <div className="w-24 h-24 rounded-3xl bg-primary-container text-on-primary flex items-center justify-center mx-auto shadow-lg shadow-primary-container/20 hover:scale-105 transition-transform duration-700">
+            <span
+              className="material-symbols-outlined text-[48px]"
+              style={{ fontVariationSettings: "'FILL' 1" }}
+            >
+              account_balance_wallet
+            </span>
+          </div>
+        </div>
+
+        {/* Título */}
+        <div className="max-w-[320px] mx-auto space-y-md">
+          <h1 className="font-display-title text-display-title text-on-surface tracking-tight">
+            Bem-vindo ao UniShare
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="font-body-main text-body-main text-on-surface-variant leading-relaxed">
+            Gestão financeira colaborativa e transparente para estudantes.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Linhas decorativas */}
+        <div className="mt-xl grid grid-cols-2 gap-gutter w-full max-w-sm opacity-60">
+          <div className="h-1 bg-primary-container/20 rounded-full" />
+          <div className="h-1 bg-outline-variant/30 rounded-full w-2/3" />
         </div>
       </main>
+
+      {/* Footer com botões */}
+      <footer
+        className={`p-container-padding w-full max-w-2xl mx-auto space-y-md pb-[48px] transition-all duration-700 ${
+          footerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
+        <button
+          onClick={() => router.push('/auth/cadastro')}
+          className="w-full h-[48px] bg-primary-container text-on-primary font-bold rounded-xl active:scale-[0.98] transition-all shadow-lg shadow-primary-container/20 flex items-center justify-center gap-sm"
+        >
+          Começar agora
+          <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+        </button>
+
+        <button
+          onClick={() => router.push('/auth/login')}
+          className="w-full h-[48px] border-2 border-primary-container text-primary-container font-bold rounded-xl active:scale-[0.98] transition-all bg-white/50 backdrop-blur-sm"
+        >
+          Já tenho uma conta
+        </button>
+
+        <div className="text-center pt-sm">
+          <p className="font-body-metadata text-body-metadata text-outline">
+            Ao continuar, você concorda com nossos Termos.
+          </p>
+        </div>
+      </footer>
+
+      {/* Glow decorativo inferior */}
+      <div className="fixed bottom-[-5%] right-[-5%] w-[40%] h-[20%] bg-tertiary-container/5 rounded-full blur-[80px] pointer-events-none" />
     </div>
   );
 }
