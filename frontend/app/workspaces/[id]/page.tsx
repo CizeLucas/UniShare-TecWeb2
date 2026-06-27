@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { mockBalances, mockExpenses } from './mock-data';
 import { Expense } from './types';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 const CATEGORIES: { value: Expense['tag']; label: string; icon: string }[] = [
   { value: 'ESSENCIAL', label: 'Essencial', icon: 'bolt' },
@@ -17,6 +19,7 @@ const TAG_STYLES: Record<Expense['tag'], { textClass: string; bgClass: string }>
 };
 
 export default function DashboardPage() {
+    const params = useParams<{ id: string }>();
   const [tagFilter, setTagFilter] = useState<'ALL' | Expense['tag']>('ALL');
 
   const myBalance = mockBalances.find((b) => b.userId === '1');
@@ -49,10 +52,12 @@ export default function DashboardPage() {
               </h2>
             </div>
             {isOwing && (
-              <button className="h-12 bg-primary text-on-primary font-body-main font-medium rounded-lg px-6 flex items-center justify-center gap-2 hover:bg-primary-container transition-colors w-full md:w-auto active:scale-95 duration-150">
-                <span className="material-symbols-outlined text-[20px]"></span>
+              <Link
+                href={`/workspaces/${params.id}/acertos`}
+                className="h-12 bg-primary text-on-primary font-body-main font-medium rounded-lg px-6 flex items-center justify-center gap-2 hover:bg-primary-container transition-colors w-full md:w-auto active:scale-95 duration-150"
+              >                
                 Pagar via PIX
-              </button>
+              </Link>
             )}
           </div>
         </div>
