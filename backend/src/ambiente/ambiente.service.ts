@@ -142,6 +142,13 @@ export class AmbienteService {
     }));
   }
 
+  /**
+   * Checks if a user is a member of an ambiente.
+   */
+  async isMember(userId: string, ambienteId: string): Promise<boolean> {
+    return this.ambienteRepository.isMember(userId, ambienteId);
+  }
+
   // ── Private helpers ──────────────────────────────────────────────────────
 
   private async findAmbienteOrThrow(ambienteId: string): Promise<Ambiente> {
