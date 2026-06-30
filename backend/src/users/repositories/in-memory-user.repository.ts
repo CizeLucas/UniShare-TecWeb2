@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
+/* eslint-disable @typescript-eslint/require-await */
 import { randomUUID } from 'crypto';
 import { hashSync } from 'bcryptjs';
 import { type PixTipo, type User } from '../../domain/users/user.entity';
