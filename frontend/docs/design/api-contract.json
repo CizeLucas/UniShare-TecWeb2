@@ -1,0 +1,346 @@
+{
+  "meta": {
+    "title": "Contrato de Integração Frontend ↔ Backend",
+    "description": "Mapeamento de cada página do frontend com os endpoints e dados necessários do backend",
+    "version": "1.0.0",
+    "updatedAt": "2026-06-28"
+  },
+  "pages": {
+    "/auth/login": {
+      "path": "app/auth/login/page.tsx",
+      "description": "Tela de login do usuário",
+      "requests": [
+        {
+          "action": "Login",
+          "method": "POST",
+          "endpoint": "/auth/login",
+          "body": {
+            "email": "string",
+            "password": "string"
+          },
+          "response": {
+            "access_token": "string (JWT)"
+          },
+          "onSuccess": "Armazenar token e redirecionar para /workspaces"
+        }
+      ]
+    },
+    "/auth/cadastro": {
+      "path": "app/auth/cadastro/page.tsx",
+      "description": "Tela de cadastro de novo usuário",
+      "requests": [
+        {
+          "action": "Registro",
+          "method": "POST",
+          "endpoint": "/auth/register",
+          "body": {
+            "name": "string",
+            "email": "string",
+            "password": "string",
+            "pixKey": "string",
+            "pixKeyType": "'CPF' | 'Email' | 'Telefone' | 'Aleatória'"
+          },
+          "response": {
+            "id": "string (UUID)",
+            "name": "string",
+            "email": "string"
+          },
+          "onSuccess": "Redirecionar para /auth/login"
+        }
+      ]
+    },
+    "/(app)/profile": {
+      "path": "app/(app)/profile/page.tsx",
+      "description": "Tela de perfil do usuário logado",
+      "auth": true,
+      "requests": [
+        {
+          "action": "Buscar perfil",
+          "method": "GET",
+          "endpoint": "/users/me",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "response": {
+            "id": "string (UUID)",
+            "name": "string",
+            "email": "string",
+            "pixKey": "string | null",
+            "pixKeyType": "'CPF' | 'Email' | 'Telefone' | 'Aleatória' | null",
+            "createdAt": "string (ISO date)"
+          }
+        },
+        {
+          "action": "Atualizar perfil",
+          "method": "PATCH",
+          "endpoint": "/users/me",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "body": {
+            "name": "string (opcional)",
+            "pixKey": "string (opcional)",
+            "pixKeyType": "string (opcional)"
+          },
+          "response": {
+            "id": "string (UUID)",
+            "name": "string",
+            "email": "string",
+            "pixKey": "string | null",
+            "pixKeyType": "string | null",
+            "createdAt": "string (ISO date)"
+          }
+        }
+      ]
+    },
+    "/(app)/workspaces": {
+      "path": "app/(app)/workspaces/page.tsx",
+      "description": "Listagem de workspaces do usuário",
+      "auth": true,
+      "requests": [
+        {
+          "action": "Listar workspaces",
+          "method": "GET",
+          "endpoint": "/workspaces",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "response": [
+            {
+              "id": "string (UUID)",
+              "name": "string",
+              "code": "string (STCH-XXXX)",
+              "type": "'RESIDENCIA' | 'UNIVERSIDADE'",
+              "ownerId": "string (UUID)",
+              "myBalance": "number (saldo do usuário neste workspace)",
+              "createdAt": "string (ISO date)"
+            }
+          ]
+        }
+      ]
+    },
+    "/(app)/workspaces/novo": {
+      "path": "app/(app)/workspaces/novo/page.tsx",
+      "description": "Criação de novo workspace",
+      "auth": true,
+      "requests": [
+        {
+          "action": "Criar workspace",
+          "method": "POST",
+          "endpoint": "/workspaces",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "body": {
+            "name": "string",
+            "type": "'RESIDENCIA' | 'UNIVERSIDADE'"
+          },
+          "response": {
+            "id": "string (UUID)",
+            "name": "string",
+            "code": "string (STCH-XXXX)",
+            "type": "string",
+            "ownerId": "string (UUID)",
+            "createdAt": "string (ISO date)"
+          },
+          "onSuccess": "Redirecionar para /workspaces"
+        },
+        {
+          "action": "Entrar em workspace via código",
+          "method": "POST",
+          "endpoint": "/workspaces/join",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "body": {
+            "code": "string (STCH-XXXX)"
+          },
+          "response": {
+            "id": "string (UUID)",
+            "name": "string",
+            "code": "string",
+            "type": "string",
+            "ownerId": "string (UUID)",
+            "createdAt": "string (ISO date)"
+          },
+          "onSuccess": "Redirecionar para /workspaces/:id"
+        }
+      ]
+    },
+    "/workspaces/[id]": {
+      "path": "app/workspaces/[id]/page.tsx",
+      "description": "Dashboard do workspace — saldo e despesas",
+      "auth": true,
+      "requests": [
+        {
+          "action": "Buscar saldo do usuário no workspace",
+          "method": "GET",
+          "endpoint": "/workspaces/:id/balances",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "response": [
+            {
+              "userId": "string (UUID)",
+              "userName": "string",
+              "balance": "number (negativo = deve, positivo = tem a receber)"
+            }
+          ]
+        },
+        {
+          "action": "Listar despesas do workspace",
+          "method": "GET",
+          "endpoint": "/workspaces/:id/expenses",
+          "queryParams": {
+            "tag": "'ESSENCIAL' | 'LAZER' | 'ALIMENTACAO' (opcional, filtra por tag)"
+          },
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "response": [
+            {
+              "id": "string (UUID)",
+              "description": "string",
+              "amount": "number",
+              "tag": "'ESSENCIAL' | 'LAZER' | 'ALIMENTACAO'",
+              "creatorId": "string (UUID)",
+              "createdAt": "string (ISO date)"
+            }
+          ]
+        },
+        {
+          "action": "Listar membros do workspace",
+          "method": "GET",
+          "endpoint": "/workspaces/:id/members",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "response": [
+            {
+              "id": "string (UUID)",
+              "name": "string",
+              "initials": "string (2 chars)"
+            }
+          ]
+        }
+      ]
+    },
+    "/workspaces/[id]/despesas/nova": {
+      "path": "app/workspaces/[id]/despesas/nova/page.tsx",
+      "description": "Formulário de criação de nova despesa",
+      "auth": true,
+      "requests": [
+        {
+          "action": "Listar membros (para selecionar quem participa)",
+          "method": "GET",
+          "endpoint": "/workspaces/:id/members",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "response": [
+            {
+              "id": "string (UUID)",
+              "name": "string",
+              "initials": "string"
+            }
+          ]
+        },
+        {
+          "action": "Criar despesa",
+          "method": "POST",
+          "endpoint": "/workspaces/:id/expenses",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "body": {
+            "description": "string",
+            "amount": "number",
+            "tag": "'ESSENCIAL' | 'LAZER' | 'ALIMENTACAO'",
+            "splitType": "'EQUAL' | 'PERCENTAGE'",
+            "participants": [
+              {
+                "userId": "string (UUID)",
+                "percentage": "number (apenas se splitType = PERCENTAGE)"
+              }
+            ]
+          },
+          "response": {
+            "id": "string (UUID)",
+            "description": "string",
+            "amount": "number",
+            "tag": "string",
+            "creatorId": "string (UUID)",
+            "createdAt": "string (ISO date)"
+          },
+          "onSuccess": "Redirecionar para /workspaces/:id"
+        }
+      ]
+    },
+    "/workspaces/[id]/acertos": {
+      "path": "app/workspaces/[id]/acertos/page.tsx",
+      "description": "Tela de acertos (pagamentos PIX)",
+      "auth": true,
+      "requests": [
+        {
+          "action": "Listar acertos pendentes",
+          "method": "GET",
+          "endpoint": "/workspaces/:id/settlements",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "response": [
+            {
+              "id": "string (UUID)",
+              "creditorId": "string (UUID)",
+              "creditorName": "string",
+              "creditorInitials": "string",
+              "creditorUsername": "string",
+              "amount": "number",
+              "referenceLabel": "string (ex: 'Ref. Energia Abril')",
+              "pixKeyLabel": "string (ex: 'CPF')",
+              "pixKeyValue": "string",
+              "status": "'PENDING' | 'CONFIRMED' | 'REJECTED'",
+              "createdAt": "string (ISO date)"
+            }
+          ]
+        },
+        {
+          "action": "Confirmar pagamento enviado",
+          "method": "POST",
+          "endpoint": "/workspaces/:id/settlements/:settlementId/confirm",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "response": {
+            "id": "string (UUID)",
+            "status": "'CONFIRMED'"
+          }
+        },
+        {
+          "action": "Aceitar pagamento recebido",
+          "method": "POST",
+          "endpoint": "/workspaces/:id/settlements/:settlementId/accept",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "response": {
+            "id": "string (UUID)",
+            "status": "'CONFIRMED'"
+          }
+        },
+        {
+          "action": "Rejeitar pagamento",
+          "method": "POST",
+          "endpoint": "/workspaces/:id/settlements/:settlementId/reject",
+          "headers": {
+            "Authorization": "Bearer <token>"
+          },
+          "response": {
+            "id": "string (UUID)",
+            "status": "'REJECTED'"
+          }
+        }
+      ]
+    }
+  }
+}
