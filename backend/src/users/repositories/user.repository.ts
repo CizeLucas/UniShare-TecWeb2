@@ -1,25 +1,24 @@
-import { type User } from '../../domain/users/user.entity';
+import { type PixTipo, type User } from '../../domain/users/user.entity';
 
 export type CreateUserData = {
-  username: string;
+  name: string;
   email: string;
   passwordHash: string;
+  pixChave?: string;
+  pixTipo?: PixTipo;
 };
 
 export type UpdateUserData = {
-  username?: string;
-  email?: string;
-  passwordHash?: string;
+  name?: string;
+  pixChave?: string;
+  pixTipo?: PixTipo;
 };
 
 export const USER_REPOSITORY = Symbol('USER_REPOSITORY');
 
 export interface UserRepository {
-  list(): Promise<User[]>;
-  getById(userId: number): Promise<User | undefined>;
-  getByUsername(username: string): Promise<User | undefined>;
+  getById(id: string): Promise<User | undefined>;
   getByEmail(email: string): Promise<User | undefined>;
   create(data: CreateUserData): Promise<User>;
-  update(userId: number, data: UpdateUserData): Promise<User | undefined>;
-  delete(userId: number): Promise<boolean>;
+  update(id: string, data: UpdateUserData): Promise<User | undefined>;
 }

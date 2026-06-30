@@ -1,5 +1,7 @@
+import { type PixTipo } from '../../domain/users/user.entity';
+
 export type UpdateUserDto = {
-  username?: string;
-  email?: string;
-  password?: string;
+  name?: string;
+  pixKey?: string;
+  pixKeyType?: PixTipo;
 };

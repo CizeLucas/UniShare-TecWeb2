@@ -12,8 +12,11 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(username: string, pass: string): Promise<AuthUser | null> {
-    const user = await this.usersService.findByUsername(username);
+  /**
+   * Called by LocalStrategy: validates credentials by email.
+   */
+  async validateUser(email: string, pass: string): Promise<AuthUser | null> {
+    const user = await this.usersService.findByEmail(email);
     if (!user) {
       return null;
     }
@@ -26,40 +29,43 @@ export class AuthService {
     return this.toAuthUser(user);
   }
 
-  async register(input: RegisterDto): Promise<{
-    access_token: string;
-    user: AuthUser;
-  }> {
+  /**
+   * POST /auth/register
+   * Creates a new user and returns their public profile (no token).
+   * The client must then call POST /auth/login to obtain a token.
+   */
+  async register(
+    input: RegisterDto,
+  ): Promise<{ id: string; name: string; email: string }> {
     const created = await this.usersService.createUser(input);
-    const authUser: AuthUser = {
-      userId: created.userId,
-      username: created.username,
+    return {
+      id: created.id,
+      name: created.name,
       email: created.email,
     };
-
-    return this.login(authUser);
   }
 
-  async login(user: AuthUser): Promise<{
-    access_token: string;
-    user: AuthUser;
-  }> {
+  /**
+   * POST /auth/login
+   * Issues a signed JWT for an already-validated user.
+   * Returns only the access_token, as per the contract.
+   */
+  async login(user: AuthUser): Promise<{ access_token: string }> {
     const payload = {
-      sub: user.userId,
-      username: user.username,
+      sub: user.id,
+      name: user.name,
       email: user.email,
     };
 
     return {
       access_token: await this.jwtService.signAsync(payload),
-      user,
     };
   }
 
   private toAuthUser(user: User): AuthUser {
     return {
-      userId: user.userId,
-      username: user.username,
+      id: user.id,
+      name: user.name,
       email: user.email,
     };
   }

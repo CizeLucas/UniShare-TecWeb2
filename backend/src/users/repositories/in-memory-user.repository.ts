@@ -1,5 +1,6 @@
+import { randomUUID } from 'crypto';
 import { hashSync } from 'bcryptjs';
-import { type User } from '../../domain/users/user.entity';
+import { type PixTipo, type User } from '../../domain/users/user.entity';
 import {
   type CreateUserData,
   type UpdateUserData,
@@ -7,26 +8,14 @@ import {
 } from './user.repository';
 
 export class InMemoryUserRepository implements UserRepository {
-  private readonly users = new Map<number, User>();
-  private nextId = 1;
+  private readonly users = new Map<string, User>();
 
   constructor() {
     this.seed();
   }
 
-  async list(): Promise<User[]> {
-    return Array.from(this.users.values());
-  }
-
-  async getById(userId: number): Promise<User | undefined> {
-    return this.users.get(userId);
-  }
-
-  async getByUsername(username: string): Promise<User | undefined> {
-    const needle = username.trim().toLowerCase();
-    return Array.from(this.users.values()).find(
-      (user) => user.username.toLowerCase() === needle,
-    );
+  async getById(id: string): Promise<User | undefined> {
+    return this.users.get(id);
   }
 
   async getByEmail(email: string): Promise<User | undefined> {
@@ -37,64 +26,61 @@ export class InMemoryUserRepository implements UserRepository {
   }
 
   async create(data: CreateUserData): Promise<User> {
-    const now = new Date();
     const user: User = {
-      userId: this.nextId++,
-      username: data.username.trim(),
+      id: randomUUID(),
+      name: data.name.trim(),
       email: data.email.trim().toLowerCase(),
       passwordHash: data.passwordHash,
-      createdAt: now,
-      updatedAt: now,
+      pixChave: data.pixChave,
+      pixTipo: data.pixTipo,
+      createdAt: new Date(),
     };
 
-    this.users.set(user.userId, user);
+    this.users.set(user.id, user);
     return user;
   }
 
-  async update(userId: number, data: UpdateUserData): Promise<User | undefined> {
-    const existing = this.users.get(userId);
+  async update(id: string, data: UpdateUserData): Promise<User | undefined> {
+    const existing = this.users.get(id);
     if (!existing) {
       return undefined;
     }
 
     const updated: User = {
       ...existing,
-      username: data.username?.trim() ?? existing.username,
-      email: data.email?.trim().toLowerCase() ?? existing.email,
-      passwordHash: data.passwordHash ?? existing.passwordHash,
-      updatedAt: new Date(),
+      name: data.name?.trim() ?? existing.name,
+      pixChave: data.pixChave !== undefined ? data.pixChave : existing.pixChave,
+      pixTipo:
+        data.pixTipo !== undefined
+          ? (data.pixTipo as PixTipo)
+          : existing.pixTipo,
     };
 
-    this.users.set(userId, updated);
+    this.users.set(id, updated);
     return updated;
-  }
-
-  async delete(userId: number): Promise<boolean> {
-    return this.users.delete(userId);
   }
 
   private seed(): void {
     const now = new Date();
     const seededUsers: User[] = [
       {
-        userId: 1,
-        username: 'john',
+        id: randomUUID(),
+        name: 'John Doe',
         email: 'john@example.com',
         passwordHash: hashSync('changeme', 10),
         createdAt: now,
-        updatedAt: now,
       },
       {
-        userId: 2,
-        username: 'maria',
+        id: randomUUID(),
+        name: 'Maria Silva',
         email: 'maria@example.com',
-        passwordHash: hashSync('guess', 10),
+        passwordHash: hashSync('guess123', 10),
+        pixChave: '11111111111',
+        pixTipo: 'CPF',
         createdAt: now,
-        updatedAt: now,
       },
     ];
 
-    seededUsers.forEach((user) => this.users.set(user.userId, user));
-    this.nextId = seededUsers.length + 1;
+    seededUsers.forEach((user) => this.users.set(user.id, user));
   }
 }

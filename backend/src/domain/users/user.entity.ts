@@ -1,8 +1,11 @@
+export type PixTipo = 'CPF' | 'EMAIL' | 'TELEFONE' | 'ALEATORIA';
+
 export type User = {
-  userId: number;
-  username: string;
+  id: string;
+  name: string;
   email: string;
   passwordHash: string;
+  pixChave?: string;
+  pixTipo?: PixTipo;
   createdAt: Date;
-  updatedAt: Date;
 };

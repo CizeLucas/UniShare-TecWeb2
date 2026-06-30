@@ -1,7 +1,10 @@
+import { type PixTipo } from '../../domain/users/user.entity';
+
 export type UserPublic = {
-  userId: number;
-  username: string;
+  id: string;
+  name: string;
   email: string;
+  pixKey: string | null;
+  pixKeyType: PixTipo | null;
   createdAt: Date;
-  updatedAt: Date;
 };
