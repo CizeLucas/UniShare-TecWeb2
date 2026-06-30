@@ -1,4 +1,70 @@
 @baseUrl = http://localhost:3000
+@username = john
+@password = changeme
+@registerUsername = user_{{$timestamp}}
+@registerEmail = user_{{$timestamp}}@example.com
+@registerPassword = secret123
+@newUserUsername = api_{{$timestamp}}
+@newUserEmail = api_{{$timestamp}}@example.com
+@newUserPassword = secret123
 
 ### Health check
 GET {{baseUrl}}/
+
+### Register
+# @name register
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "{{registerUsername}}",
+  "email": "{{registerEmail}}",
+  "password": "{{registerPassword}}"
+}
+
+### Login
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "{{username}}",
+  "password": "{{password}}"
+}
+
+### Profile (JWT)
+GET {{baseUrl}}/profile
+Authorization: Bearer {{login.response.body.access_token}}
+
+### List users
+GET {{baseUrl}}/users
+Authorization: Bearer {{login.response.body.access_token}}
+
+### Create user
+# @name createUser
+POST {{baseUrl}}/users
+Authorization: Bearer {{login.response.body.access_token}}
+Content-Type: application/json
+
+{
+  "username": "{{newUserUsername}}",
+  "email": "{{newUserEmail}}",
+  "password": "{{newUserPassword}}"
+}
+
+### Get user by id
+GET {{baseUrl}}/users/{{createUser.response.body.userId}}
+Authorization: Bearer {{login.response.body.access_token}}
+
+### Update user
+PATCH {{baseUrl}}/users/{{createUser.response.body.userId}}
+Authorization: Bearer {{login.response.body.access_token}}
+Content-Type: application/json
+
+{
+  "email": "updated_{{newUserEmail}}"
+}
+
+### Delete user
+DELETE {{baseUrl}}/users/{{createUser.response.body.userId}}
+Authorization: Bearer {{login.response.body.access_token}}

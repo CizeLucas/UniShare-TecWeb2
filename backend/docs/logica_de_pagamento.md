@@ -1,4 +1,4 @@
-# Esquema de Banco de Dados: Controle de Amortização (STITCH)
+# Esquema de Banco de Dados: Controle de Amortização (Unishare)
 
 O banco de dados recomendado é o **PostgreSQL** (ou qualquer banco relacional equivalente), utilizando chaves primárias do tipo `UUID` ou `BIGSERIAL` (IDs numéricos auto-incrementais).
 
