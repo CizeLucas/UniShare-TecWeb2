@@ -1,8 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -10,4 +8,153 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────
+
+enum PixTipo {
+  CPF
+  EMAIL
+  TELEFONE
+  ALEATORIA
+}
+
+enum AmbienteTipo {
+  RESIDENCIA
+  ATIVIDADE
+}
+
+enum ExpenseTag {
+  ESSENCIAL
+  LAZER
+}
+
+enum ParticipationStatus {
+  PENDENTE
+  PAGO
+  EM_ANALISE
+}
+
+enum SettlementStatus {
+  AGUARDANDO_CONFIRMACAO
+  CONFIRMADO
+  REJEITADO
+}
+
+// ─────────────────────────────────────────────
+// MODELS
+// ─────────────────────────────────────────────
+
+/// Armazena as informações de conta e dados de faturamento dos estudantes.
+/// Regra: pix_chave é obrigatório para que o usuário possa ser "Pagador Original".
+model User {
+  id        String   @id @default(uuid())
+  nome      String
+  email     String   @unique
+  senhaHash String   @map("senha_hash")
+  pixChave  String?  @map("pix_chave")
+  pixTipo   PixTipo? @map("pix_tipo")
+  criadoEm DateTime @default(now()) @map("criado_em")
+
+  // Relacionamentos
+  ambientes            UserAmbiente[]
+  despesasCriadas      Expense[]              @relation("ExpenseCriador")
+  despesasPagas        Expense[]              @relation("ExpensePagador")
+  participacoes        ExpenseParticipation[]
+  settlementsPagos     Settlement[]           @relation("SettlementPagador")
+  settlementsRecebidos Settlement[]           @relation("SettlementRecebedor")
+
+  @@map("users")
+}
+
+/// Ambientes isolados (repúblicas ou grupos de projeto) onde as despesas acontecem.
+model Ambiente {
+  id   String       @id @default(uuid())
+  nome String
+  tipo AmbienteTipo
+
+  // Relacionamentos
+  membros     UserAmbiente[]
+  despesas    Expense[]
+  settlements Settlement[]
+
+  @@map("ambientes")
+}
+
+/// Tabela pivô que vincula quais usuários pertencem a quais ambientes.
+/// Regra de saída: um usuário só pode sair se todas as suas participações no ambiente tiverem status PAGO.
+model UserAmbiente {
+  userId     String   @map("user_id")
+  ambienteId String   @map("ambiente_id")
+  entradaEm  DateTime @default(now()) @map("entrada_em")
+
+  user     User     @relation(fields: [userId], references: [id])
+  ambiente Ambiente @relation(fields: [ambienteId], references: [id])
+
+  @@id([userId, ambienteId])
+  @@map("user_ambientes")
+}
+
+/// Registro bruto do custo que foi pago por alguém dentro de um ambiente.
+/// Regra: após criada, uma despesa NÃO pode ser editada ou excluída.
+model Expense {
+  id         String     @id @default(uuid())
+  ambienteId String     @map("ambiente_id")
+  creatorId  String     @map("creator_id")
+  pagadorId  String     @map("pagador_id")
+  titulo     String
+  valorTotal Decimal    @map("valor_total") @db.Decimal(10, 2)
+  tag        ExpenseTag
+  criadaEm  DateTime   @default(now()) @map("criada_em")
+
+  // Relacionamentos
+  ambiente      Ambiente               @relation(fields: [ambienteId], references: [id])
+  creator       User                   @relation("ExpenseCriador", fields: [creatorId], references: [id])
+  pagador       User                   @relation("ExpensePagador", fields: [pagadorId], references: [id])
+  participacoes ExpenseParticipation[]
+
+  @@map("expenses")
+}
+
+/// Fatia de responsabilidade de cada usuário sobre uma despesa.
+/// Aqui reside o controle de pagamentos parciais (amortização FIFO).
+/// Regra: status é derivado de valor_pago vs valor_calculado.
+model ExpenseParticipation {
+  id             String              @id @default(uuid())
+  expenseId      String              @map("expense_id")
+  userId         String              @map("user_id")
+  porcentagem    Decimal             @db.Decimal(5, 2)
+  valorCalculado Decimal             @map("valor_calculado") @db.Decimal(10, 2)
+  valorPago      Decimal             @default(0.00) @map("valor_pago") @db.Decimal(10, 2)
+  status         ParticipationStatus @default(PENDENTE)
+  pagoEm         DateTime?           @map("pago_em")
+
+  // Relacionamentos
+  expense Expense @relation(fields: [expenseId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@map("expense_participations")
+}
+
+/// Registro de transferências PIX de acerto de contas entre usuários.
+/// Status lifecycle: AGUARDANDO_CONFIRMACAO -> CONFIRMADO (aciona FIFO) | REJEITADO.
+/// Regra: só pode existir um settlement AGUARDANDO_CONFIRMACAO por par (pagador, recebedor) no mesmo ambiente.
+model Settlement {
+  id               String           @id @default(uuid())
+  ambienteId       String           @map("ambiente_id")
+  pagadorId        String           @map("pagador_id")
+  recebedorId      String           @map("recebedor_id")
+  valorTransferido Decimal          @map("valor_transferido") @db.Decimal(10, 2)
+  status           SettlementStatus @default(AGUARDANDO_CONFIRMACAO)
+  dataEnvio        DateTime         @default(now()) @map("data_envio")
+  dataValidacao    DateTime?        @map("data_validacao")
+
+  // Relacionamentos
+  ambiente  Ambiente @relation(fields: [ambienteId], references: [id])
+  pagador   User     @relation("SettlementPagador", fields: [pagadorId], references: [id])
+  recebedor User     @relation("SettlementRecebedor", fields: [recebedorId], references: [id])
+
+  @@map("settlements")
 }
